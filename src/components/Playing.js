@@ -16,9 +16,9 @@ export default function Playing() {
       <AudioPlayer
         className="player-music"
         src={song.url}
-        layout="stacked-reverse"
+        layout="horizontal-reverse"
         showSkipControls={true}
-        showJumpControls={false}
+        showJumpControls={true}
         onClickNext={handleClickNext}
         onClickPrevious={handleClickPre}
       />
