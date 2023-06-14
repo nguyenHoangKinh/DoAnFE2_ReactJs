@@ -10,9 +10,17 @@ export default function ListSongs() {
   };
   useEffect(() => {
     setidSong(song.id)
-  }, [song])
+  }, [song]);
+  const [searchTerm, setSearchTerm] = useState('');
   return (
-    <div className="col-span-2  overflow-y-scroll">
+    <div className="col-span-2 overflow-y-scroll">
+      <div class="pt-2 relative mx-auto text-gray-600">
+        <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+          type="search" name="search" placeholder="Search"  onChange={event => {
+            setSearchTerm(event.target.value);
+          }}/>
+      </div>
+
       <table className="table-auto w-full">
         <thead className="text-white h-12">
           <tr>
@@ -24,24 +32,32 @@ export default function ListSongs() {
             </th>
           </tr>
         </thead>
-        <tbody>
-          {DataSongs.map((song, index) => (
-            <tr
-              key={index}
-              className={`bg-slate-800 h-12 text-gray-500 hover:bg-slate-600 ${idSong === song.id && 'bg-slate-600 text-teal-400'}`}
-              onClick={() => handlePlaySong(song.id)}
-            >
-              <td className="text-center">{index + 1}</td>
-              <td>{song.name}</td>
-              <td className="text-center">{song.author}</td>
-              <td className="text-center">
-                <a href={song.url}>
-                  <i className="fa fa-download"></i>
-                </a>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        {DataSongs.filter((val) => {
+          if (searchTerm == "") {
+            return val;
+          } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return val;
+          }
+        }).map((val, key) => {
+          return (
+            <thead className="text-white h-12">
+              <tr
+                key={key}
+                className={`bg-slate-800 h-12 text-gray-500 hover:bg-slate-600 ${idSong === val.id && 'bg-slate-600 text-teal-400'}`}
+                onClick={() => handlePlaySong(val.id)}
+              >
+                <td className="text-center">{key + 1}</td>
+                <td>{val.name}</td>
+                <td className="text-center">{val.author}</td>
+                <td className="text-center">
+                  <a href={val.url}>
+                    <i className="fa fa-download"></i>
+                  </a>
+                </td>
+              </tr>
+            </thead>
+          )
+        })}
       </table>
     </div>
   );
