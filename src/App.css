@@ -5,7 +5,12 @@
 .rhap_time, .rhap_current-time {
     color: white !important;
 }
-
+.pr-16 {
+  padding-right: 80%;
+}
+.img-anh{
+  background-image: url(https://e0.pxfuel.com/wallpapers/135/99/desktop-wallpaper-music-karaoke-am-nh%E1%BA%A1c-am-thanh-music-banner.jpg);
+}
 .logo {
   animation: spin infinite 10s linear;
 }
