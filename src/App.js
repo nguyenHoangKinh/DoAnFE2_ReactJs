@@ -3,7 +3,6 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import DetailSong from "./components/DetailSong";
 import ListSongs from "./components/ListSongs";
-import Search from "./components/Search";
 import { Songs } from "./Context";
 import DataSongs from "./data/songs.json";
 import Playing from "./components/Playing";
